@@ -45,7 +45,7 @@
     <!-- 4 配置扫描dao接口 动态实现dao接口  注入spring -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
-        <property name="basePackage" value="com.shcifco.dataapi.modules.rank.dao"/>
+        <property name="basePackage" value="com.shcifco.rank.modules.rank.dao"/>
     </bean>
 
 
