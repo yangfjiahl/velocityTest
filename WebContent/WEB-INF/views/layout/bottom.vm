@@ -1,0 +1,14 @@
+<!-- Bootstrap 3.3.7 -->
+<script src="${rc.contextPath}/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<script src="${rc.contextPath}/static/layui/layui.js"></script>
+
+
+<script>
+var contextPath="${rc.contextPath}/";
+
+$(function() {
+	
+});
+</script>
+

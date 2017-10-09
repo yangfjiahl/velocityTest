@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置整合mybatis-->
+
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--2 连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close" init-method="init">
+        <property name="url" value="${db.url}" />
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="driverClassName" value="${db.driverClass}" />
+        <property name="initialSize" value="3" />
+        <property name="maxActive" value="20" />
+        <property name="maxWait" value="60000" />
+        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandonedTimeout" value="180" />
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="20" />
+        <!-- stat -->
+        <property name="filters" value="wall,stat" />
+        <property name="connectionProperties"
+                  value="druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000" />
+
+    </bean>
+
+    <!-- 3 配置sqlsessionFactory对象 -->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="typeAliasesPackage" value="com.shcifco.rank.modules.rank.entity"/>
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
+    </bean>
+
+    <!-- 4 配置扫描dao接口 动态实现dao接口  注入spring -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+        <property name="basePackage" value="com.shcifco.dataapi.modules.rank.dao"/>
+    </bean>
+
+
+
+
+</beans>

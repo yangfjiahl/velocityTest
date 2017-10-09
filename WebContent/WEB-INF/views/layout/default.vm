@@ -1,0 +1,38 @@
+##set($user = $session.getAttribute("user"))
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+#parse('layout/top.vm')
+
+<title>#if($!pageTitle) ${pageTitle} -#end hello</title>
+
+
+</head>
+
+<body>
+
+	<div class="wrapper">
+		#if(!$hiddenNav) 
+		#parse('layout/header.vm')
+		
+		#parse('layout/menu.vm')
+		#end
+
+		<div class="content-wrapper" style="min-height: 200px;">
+			<section class="content">
+				$screen_content
+			</section>
+		</div>
+
+		#if(!$hiddenNav)
+		#parse('layout/footer.vm')
+		#end
+	</div>
+
+</body>
+
+#parse('layout/bottom.vm')
+
+</html>

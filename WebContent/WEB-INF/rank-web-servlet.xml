@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	    http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-4.3.xsd
+">
+
+	<!-- 注解及编码配置 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/html;charset=UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!--静态资源默认servlet 配置，用来获取静态资源 -->
+	<!--<mvc:default-servlet-handler /> -->
+
+	<mvc:resources location="/static/" mapping="/static/**" />
+
+	<!-- velocity -->
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/views/" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".vm" />
+		<property name="layoutUrl" value="layout/default.vm" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="requestContextAttribute" value="rc" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+	</bean>
+
+
+	<!-- 配置文件 -->
+	<context:property-placeholder location="classpath:rank-config.properties" />
+
+	<!--注入 web 相关的包 -->
+	<context:component-scan base-package="com.shcifco.rank.modules.rank" />
+
+</beans>

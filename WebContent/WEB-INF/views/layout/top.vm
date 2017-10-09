@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="${rc.contextPath}/static/bootstrap-3.3.7/css/bootstrap.min.css">
+
+<!-- layout -->
+<link rel="stylesheet" href="${rc.contextPath}/static/layui/css/layui.css">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="${rc.contextPath}/static/html5shiv/html5shiv.min.js"></script>
+<script src="${rc.contextPath}/static/respond/respond.min.js"></script>
+<![endif]-->
+
+<!-- jQuery 3.2.1 -->
+<script src="${rc.contextPath}/static/jquery/jquery-3.2.1.min.js"></script>
+
